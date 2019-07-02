@@ -4,9 +4,13 @@
 
   tasks:
   - name: Add Spacewalk repo
-    command: yum localinstall -y https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/00912457-spacewalk-repo/spacewalk-repo-2.9-4.el7.noarch.rpm
+    yum:
+      name:  https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/00912457-spacewalk-repo/spacewalk-repo-2.9-4.el7.noarch.rpm
+      state: present
   - name: Add EPEL repo
-    command: yum localinstall -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    yum:
+      name:  https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      state: present
   - name: Install Spacewalk
     yum:
       name: "{{ packages }}"
@@ -34,3 +38,12 @@
       port: 69/udp
       permanent: yes
       state: enabled
+  - name: Create answer file
+    copy:
+      src: answers.txt
+      dest: /etc/rhn/answers.txt
+      owner: root
+      group: root
+      mode: 0600
+  - name: Setup the Spacewalk server
+    command: spacewalk-setup --answer-file=/etc/rhn/answers.txt
