@@ -5,6 +5,8 @@ Automated deployment of Spacewalk with local PostgreSQL database via Ansible
 - Ansible
 - RHEL7 or CentOS7 OS installed
 
+## Usage
+
 1. Clone this repo
 ```
  git clone https://github.com/RapidIE/shuttle.git
