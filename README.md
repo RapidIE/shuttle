@@ -1,8 +1,9 @@
 # shuttle
 Automated deployment of Spacewalk with local PostgreSQL database via Ansible
 
-## Usage
-Ensure you have ansible installed
+## Requirements
+- Ansible
+- RHEL7 or CentOS7 OS installed
 
 1. Clone this repo
 ```
